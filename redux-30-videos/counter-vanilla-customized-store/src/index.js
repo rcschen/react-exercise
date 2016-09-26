@@ -20,17 +20,17 @@ const createStore = (reducer) => {
       };
       const subscribe = (listener) =>{
             listeners.push(listener);
-            return ()=> {
-                 listeners = listeners.filter(l => l !== listener );
-                 //listeners;
-            };
+            return ()=>listeners;
+            //return ()=> {
+            //     listeners = listeners.filter(l => l !== listener );
+            // };
       };
-      dispatch({});
+      //dispatch({});
       return {getState, dispatch, subscribe};
 };
 const store = createStore(counter);
 const render = () => {
-      document.getElementById('root').innerText = store.getState();
+      document.getElementById('root').innerHTML = store.getState();
 };
 store.subscribe(render);
 render();
