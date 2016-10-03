@@ -47,6 +47,8 @@ const testAddTodo = () => {
        expect(todos(stateBefore, action)).toEqual(stateAfter);
 };
 testAddTodo();
+console.log('test add ok');
+
 const testToggleTodo = () => {
        const stateBefore = [{
          id:0,
@@ -75,7 +77,5 @@ const testToggleTodo = () => {
        deepFreeze(action);
        expect(todos(stateBefore, action)).toEqual(stateAfter);
 };
-testToggleTodo();
-console.log('test add ok');
 testToggleTodo();
 console.log('test toggle ok');
