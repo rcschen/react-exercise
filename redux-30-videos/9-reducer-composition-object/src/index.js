@@ -33,39 +33,20 @@ const visibilityFilter = (state='SHOW_ALL', action) =>{
              case 'SET_VISIBILITY_FILTER':
                    return action.filter;
              default:
-                   console.log("!!!!!!!"+state);
                    return state
         }
 };
 
+
+// reducer composition for todos and visibilityFilter
 const todoApp = (state={}, action) =>{
-      console.log("??????"+state.visibilityFilter);
       return {
               todos: todos(state.todos, action),
               visibilityFilter: visibilityFilter(state.visibilityFilter, action)
       };
 };
-//import {createStore} from 'redux';
-const createStore = (reducer) => {
-      let state;
-      let listeners = [];
 
-      const getState = () => state;
-      const dispatch = (action) => {
-            state = reducer(state, action);
-            listeners.forEach( l => l());
-      };
-      const subscribe = (listener) =>{
-            listeners.push(listener);
-            return ()=>listeners;
-            //return ()=> {
-            //     listeners = listeners.filter(l => l !== listener );
-            // };
-      };
-      //dispatch({});
-      return {getState, dispatch, subscribe};
-};
-
+import {createStore} from 'redux';
 const store = createStore(todoApp);
 console.log('Initial state:');
 console.log(store.getState());
